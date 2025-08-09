@@ -22,4 +22,4 @@ jobs:
             git pull origin main
             pm2 kill
             npm i
-            pm2 start server.js --name "mes-serve"
+            pm2 start server.js --name "mes-server"
