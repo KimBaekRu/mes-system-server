@@ -1,0 +1,25 @@
+name: main ci process
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    name: deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: excuting remote ssh commands
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: ${{ secrets.INSTANCE_IP }}
+          username: ${{ secrets.INSTANCE_USER }}
+          key: ${{ secrets.INSTANCE_KEY }}
+          port: ${{ secrets.INSTANCE_PORT }}
+          script: |
+            cd /home/ubuntu/mes-system-server
+            git pull origin main
+            pm2 kill
+            npm i
+            pm2 start server.js --name "mes-serve"
