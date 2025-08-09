@@ -22,4 +22,4 @@ jobs:
             git pull origin main
             pm2 delete mes-server
             npm i
-            pm2 start server.js --name "mes-server" s
+            pm2 start server.js --name "mes-server"
