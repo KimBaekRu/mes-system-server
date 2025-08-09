@@ -20,6 +20,6 @@ jobs:
           script: |
             cd /home/ubuntu/mes-system-server
             git pull origin main
-            pm2 kill
+            pm2 delete mes-server
             npm i
             pm2 start server.js --name "mes-server"
